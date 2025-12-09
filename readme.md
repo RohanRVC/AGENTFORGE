@@ -1,5 +1,4 @@
 # 🚀 AgentForge – Agentic RAG + Multimodal AI Platform
-### *Project for AI Engineer Role at Madeline & Co.*
 
 AgentForge is a production-ready backend system that showcases practical AI engineering skills across:
 
