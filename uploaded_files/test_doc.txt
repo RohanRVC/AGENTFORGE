@@ -1,0 +1,1 @@
+This document explains Artificial Intelligence and machine learning basics.
