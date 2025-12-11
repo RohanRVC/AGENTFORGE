@@ -6,9 +6,7 @@ from app.api.agent import router as agent_router
 from app.api.multimodal import router as multimodal_router
 from app.services.qdrant_service import init_qdrant
 from qdrant_client import QdrantClient
-
-q = QdrantClient(host="localhost", port=6333)
-q.delete_collection("agentforge_embeddings")
+from app.db.database import Base , engine
 
 app = FastAPI(
     title="AgentForge",
@@ -18,6 +16,7 @@ app = FastAPI(
 
 @app.on_event("startup")
 async def startup_event():
+    Base.metadata.create_all(bind=engine)
     init_qdrant()   
 
 
