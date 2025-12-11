@@ -1,5 +1,3 @@
-# app/utils/chunker.py
-
 from typing import List
 
 def clean_text(text: str) -> str:
@@ -7,11 +5,8 @@ def clean_text(text: str) -> str:
     Clean raw text by normalizing spaces and newlines.
     This helps make chunking more stable.
     """
-    # Replace newlines with spaces
     text = text.replace("\n", " ")
-    # Replace tabs with spaces
     text = text.replace("\t", " ")
-    # Collapse multiple spaces into one
     while "  " in text:
         text = text.replace("  ", " ")
     return text.strip()
@@ -37,7 +32,6 @@ def chunk_text(
     chunks: List[str] = []
 
     if len(words) <= max_words:
-        # Text is short, single chunk is enough
         chunks.append(" ".join(words))
         return chunks
 
@@ -45,13 +39,11 @@ def chunk_text(
     end = max_words
 
     while start < len(words):
-        # Slice the words for this chunk
         chunk_words = words[start:end]
         chunk = " ".join(chunk_words).strip()
         if chunk:
             chunks.append(chunk)
 
-        # Move the window forward with overlap
         if end >= len(words):
             break
 
