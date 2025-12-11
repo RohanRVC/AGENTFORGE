@@ -1,4 +1,3 @@
-# app/agents/controller.py
 
 from app.agents.tools import rag_tool, calculator_tool, web_scraper_tool
 from app.agents.planner import plan_steps
@@ -12,7 +11,6 @@ def run_agent_controller(task: str):
 
     start_time = timer()
 
-    # AI agent planning
     steps = plan_steps(task)
     trace = []
     metrics = {
@@ -50,7 +48,6 @@ def run_agent_controller(task: str):
         tool_end = timer()
         metrics["tool_times"][tool_name] = round(tool_end - tool_start, 4)
 
-    # --- Final synthesis prompt ---
     final_prompt = f"""
 User Task:
 {task}
@@ -73,5 +70,5 @@ Write the final answer in very clear language.
         "final_answer": final_answer,
         "steps": trace,
         "metrics": metrics,
-        "llm_cost": cost_info     # <-- ADDED (important for assignment)
+        "llm_cost": cost_info     
     }
