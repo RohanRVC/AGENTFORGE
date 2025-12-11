@@ -52,4 +52,3 @@ def run_llama(prompt: str):
                 "estimated_cost_usd": 0.0
             }
         )
-    
