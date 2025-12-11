@@ -52,7 +52,6 @@ def evaluate_retrieval(results: List[Dict], ground_truth: str) -> Dict:
 
     retrieved_texts = [r["text"] for r in results]
 
-    # ROUGE against first chunk (simple baseline)
     rouge_scores = [rouge_l(text, ground_truth) for text in retrieved_texts]
 
     return {
@@ -62,7 +61,6 @@ def evaluate_retrieval(results: List[Dict], ground_truth: str) -> Dict:
     }
 
 
-# app/eval/retrieval_metrics.py
 
 
 
