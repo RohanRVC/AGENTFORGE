@@ -2,7 +2,7 @@ import ollama
 from app.utils.latency import measure_latency
 
 
-LLAVA_MODEL = "llava"   
+LLAVA_MODEL = "llava:7b"   
 
 
 @measure_latency("LLaVA Captioning")
