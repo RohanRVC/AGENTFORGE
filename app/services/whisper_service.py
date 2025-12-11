@@ -3,7 +3,7 @@ from app.utils.latency import measure_latency
 from app.eval.cost_metrics import estimate_cost
 
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
+# OLLAMA_URL = "http://localhost:11434/api/generate"
 WHISPER_MODEL = "whisper"
 
 
