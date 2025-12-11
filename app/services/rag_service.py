@@ -4,7 +4,7 @@ from app.services.embedding_service import embed_text
 from app.utils.latency import measure_latency
 from app.utils.rouge_utils import compute_rouge_l
 
-client = QdrantClient(host="localhost", port=6333)
+client = QdrantClient(host="qdrant", port=6333)
 COLLECTION = "agentforge_embeddings"
 
 
