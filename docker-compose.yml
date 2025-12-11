@@ -10,6 +10,7 @@ services:
     depends_on:
       - postgres
       - qdrant
+      - ollama
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
@@ -18,9 +19,27 @@ services:
       POSTGRES_PASSWORD: agentforge_pass
       QDRANT_HOST: qdrant
       QDRANT_PORT: 6333
-      OLLAMA_HOST: host.docker.internal     
+      OLLAMA_HOST: "http://ollama:11434"
+      
     volumes:
       - .:/app
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: agentforge_ollama
+    restart: always
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+    entrypoint: >
+      sh -c "
+        ollama serve &
+        sleep 5 &&
+        ollama pull llama3.1 &&
+        ollama pull llava:7b &&
+        wait
+      "
 
   qdrant:
     image: qdrant/qdrant
@@ -47,3 +66,4 @@ services:
 volumes:
   qdrant_storage:
   postgres_data:
+  ollama_models:
