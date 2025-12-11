@@ -37,9 +37,6 @@ async def multimodal_query(
     transcript = None
     video_text = None
 
-    # ------------------------------
-    # Handle file upload
-    # ------------------------------
     if file:
         ext = file.filename.split(".")[-1].lower()
         filepath = f"uploaded_files/{file.filename}"
@@ -49,15 +46,12 @@ async def multimodal_query(
         with open(filepath, "wb") as f:
             f.write(await file.read())
 
-        # IMAGE
         if ext in ["png", "jpg", "jpeg", "webp"]:
             caption = process_image_for_query(filepath)
 
-        # AUDIO
         elif ext in ["mp3", "wav", "m4a", "aac", "flac", "ogg"]:
             transcript = transcribe_audio(filepath)
 
-        # VIDEO
         elif ext in ["mp4", "mov", "avi", "mkv", "webm"]:
             video_text = process_video_for_query(filepath)
 
